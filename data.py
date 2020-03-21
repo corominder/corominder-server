@@ -1,6 +1,5 @@
 import populartimes 
 import datetime
-import geopy
 from math import sqrt
 
 
@@ -16,25 +15,12 @@ class MapData():
         day = datetime.datetime.today().weekday()
         hour = datetime.datetime.today().hour
 
-        safe = True
-        threats = []
         result = []
         for place in data:
             popularity = place['populartimes'][day]['data'][hour]
             if popularity >= threshold:
                 coordinates = place['coordinates']
-                distance = geopy.distance.geodesic((coordinates['lat'], coordinates['lng']), location).km * 1000
-                result.append({'coordinates' : coordinates, 'radius' : popularity, 'distance' : distance})
+                result.append({'coordinates' : coordinates, 'radius' : popularity})
 
-                if(distance <= popularity):
-                    safe = False
-                    threats.append({'coordinates' : coordinates, 'radius' : popularity, 'distance' : distance})
-
-        ret = {
-            "safe" : safe,
-            "threats" : threats,
-            "crowded_places" : results
-        }
-
-        return ret
+        return result
 

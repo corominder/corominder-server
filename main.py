@@ -12,12 +12,12 @@ dataSource = MapData(api_key)
 
 @app.route('/api', methods=['GET'])
 def home():
-    return '''<h1>Corominders api</h1>
-<p>/amisafe?'''
+    return '''<h1>Corominder api</h1>
+<p>/get_crowded_places/[lat]/[lng]/[threshold] </p> may take up to 10 seconds'''
 
 
 # A route to return all of the available entries in our catalog.
-@app.route('/api/amisafe/<float:lat>/<float:lng>/<int:threshold>', methods=['GET'])
+@app.route('/api/get_crowded_places/<float:lat>/<float:lng>/<int:threshold>', methods=['GET'])
 def task(lat, lng, threshold):
     return jsonify(dataSource.get((lat, lng), threshold, search_radius))
 

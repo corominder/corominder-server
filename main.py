@@ -21,4 +21,4 @@ def home():
 def task(lat, lng, threshold):
     return jsonify(dataSource.get((lat, lng), threshold, search_radius))
 
-app.run()
+app.run(host='0.0.0.0', port=80)

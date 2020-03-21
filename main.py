@@ -17,8 +17,8 @@ def home():
 
 
 # A route to return all of the available entries in our catalog.
-@app.route('/api/get_crowded_places/<float:lat>/<float:lng>/<int:threshold>', methods=['GET'])
+@app.route('/api/get_crowded_places/<float:lat>/<float:lng>/<int:threshold>', methods=['POST'])
 def task(lat, lng, threshold):
-    return jsonify(dataSource.get((lat, lng), threshold, search_radius))
+    return jsonify(dataSource.get((request.form['lat'], request.form['lng']), request.form['threshold'], search_radius))
 
 app.run(host='0.0.0.0', port=80)

@@ -6,7 +6,7 @@ from flask import request, jsonify
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
 
-api_key = "AIzaSyD42KMDWyXKW2-MVPMD0UR-4aceApBpdYQ"
+api_key = ""
 search_radius = 0.009213
 dataSource = MapData(api_key)
 
